@@ -1,70 +1,173 @@
-# Getting Started with Create React App
+# Lambda Calculus Diagram Generator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based interactive application for visualizing and manipulating lambda calculus expressions.
 
-## Available Scripts
+## 🚀 Quick Start
 
-In the project directory, you can run:
+```bash
+# Install dependencies
+npm install
 
-### `npm start`
+# Start development server
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📋 Available Scripts
 
-### `npm test`
+### Development
+- **`npm start`** - Runs the app in development mode with hot reload
+- **`npm test`** - Launches the test runner in interactive watch mode  
+- **`npm run build`** - Builds the app for production deployment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Testing
+- **`npx playwright test`** - Run end-to-end tests
+- **`npm test -- --coverage`** - Run tests with coverage report
 
-### `npm run build`
+## 🏗️ Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+├── App.js              # Main React component with Material-UI interface
+├── Lambda.js           # Lambda calculus parser, evaluator, and diagram generator
+├── index.js            # Application entry point
+├── App.css             # Application styles
+└── index.css           # Global styles
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+tests/
+└── app.spec.js         # Playwright e2e tests
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+public/
+├── index.html          # HTML template
+└── ...                 # Static assets
+```
 
-### `npm run eject`
+## 🔧 Core Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Lambda Calculus Engine (`Lambda.js`)
+- **Parser**: Recursive descent parser for lambda expressions
+- **AST Classes**: `Term`, `Var`, `Lam`, `App` for expression representation
+- **Beta Reduction**: Step-by-step evaluation with proper substitution
+- **Diagram Generator**: SVG visualization of variable bindings and applications
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### React UI (`App.js`)
+- Material-UI dark theme interface
+- Interactive expression input with symbol buttons
+- Real-time diagram generation and updates
+- Beta reduction controls
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📚 Lambda Expression Syntax
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Expression | Description | Example |
+|------------|-------------|---------|
+| `x` | Variable | `x`, `y`, `f` |
+| `λx.M` | Abstraction | `λx.x` (identity) |
+| `(M N)` | Application | `(λx.x y)` |
+| Nested | Complex expressions | `((λx.(λw.xw))(λa.(λf.f)))` |
 
-## Learn More
+## 🧪 Testing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The project includes comprehensive testing:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Unit Tests**: Jest-based tests for lambda calculus operations
+- **E2E Tests**: Playwright tests for complete user workflows
+- **Integration Tests**: UI component interaction testing
 
-### Code Splitting
+```bash
+# Run all tests
+npm test
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Run e2e tests with UI
+npx playwright test --ui
 
-### Analyzing the Bundle Size
+# Generate test coverage
+npm test -- --coverage --watchAll=false
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🎯 Features
 
-### Making a Progressive Web App
+### Expression Parsing
+- Supports variables, lambda abstractions, and function applications
+- Handles nested parentheses and complex expressions
+- Error reporting with position information
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Visualization
+- Dynamic SVG diagram generation
+- Visual representation of variable bindings
+- Application connections between expressions
+- Automatic layout and positioning
 
-### Advanced Configuration
+### Beta Reduction
+- Step-by-step evaluation
+- Alpha conversion to avoid variable capture
+- Proper substitution handling
+- Loop detection for safety
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🔧 Technical Details
 
-### Deployment
+### Dependencies
+- **React 19.1.0**: Latest React with concurrent features
+- **Material-UI 7.2.0**: Component library and theming
+- **Playwright**: End-to-end testing framework
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Browser Support
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
 
-### `npm run build` fails to minify
+### Performance
+- Handles expressions up to ~50 levels of nesting
+- Real-time parsing and visualization
+- Efficient AST manipulation and rendering
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🚀 Deployment
+
+```bash
+# Build for production
+npm run build
+
+# The build folder contains optimized static files
+# Deploy the contents to any static hosting service
+```
+
+The build is optimized and ready for deployment to services like:
+- Netlify
+- Vercel
+- GitHub Pages
+- AWS S3 + CloudFront
+
+## 🤝 Development
+
+### Code Style
+- ESLint configuration included
+- Prettier formatting recommended
+- React Hooks patterns
+- Functional components preferred
+
+### Adding Features
+1. Extend lambda calculus operations in `Lambda.js`
+2. Update UI components in `App.js`
+3. Add corresponding tests in `tests/`
+4. Update documentation
+
+### Common Development Tasks
+
+```bash
+# Add new dependency
+npm install <package-name>
+
+# Run linter
+npx eslint src/
+
+# Format code
+npx prettier --write src/
+
+# Analyze bundle size
+npm run build && npx serve -s build
+```
+
+---
+
+For more detailed information, see the main project README.
